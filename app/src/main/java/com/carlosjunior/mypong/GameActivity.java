@@ -1,25 +1,26 @@
 package com.carlosjunior.mypong;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
+public class GameActivity extends ActionBarActivity {
+
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
+        gameView = (GameView) findViewById(R.id.gameview);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_game, menu);
         return true;
     }
 
@@ -38,8 +39,14 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void startGame(View view) {
-        Intent t = new Intent(this, GameActivity.class);
-        startActivity(t);
+    public void onStart() {
+        super.onStart();
+        gameView.updateBallPosition();
     }
+    @Override
+    public void finish() {
+        gameView.resetHandler();
+        super.finish();
+    }
+
 }
