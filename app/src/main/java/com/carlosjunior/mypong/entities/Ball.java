@@ -10,44 +10,28 @@ import com.carlosjunior.mypong.constants.PongConstants;
  */
 public class Ball {
 
+    private int radius;
     private Position position;
+    private int incrementX = -19;
+    private int incrementY = -15;
+    private int direcaoX = -1;  // positivo para direita, negativo para esquerda
+    private int direcaoY = -1;  // positivo para cima, negativo para baixo
 
     public Ball() {
-        position = new Position(PongConstants.INITIAL_X_POSITION, PongConstants.INITIAL_Y_POSITION);
+        position = new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION);
+        radius = PongConstants.BALL_RADIUS;
     }
-
-    int i = 1;
-    int increment = -5;
-    int direcao = -1;
-    public void move() {
-
-        if (i == 1 || i == 200) {
-            direcao = direcao * (-1);
-            increment = increment * (-1);
-        }
-
-        i = i + direcao;
-
-        position.setX(position.getX() + increment);
-        position.setY(position.getY() + increment);
-    }
-
-
-    int incrementX = -15;
-    int incrementY = -6;
-    int direcaoX = -1;
-    int direcaoY = -1;
 
     public void move(Rect bounds) {
 
         int x = position.getX();
         int y = position.getY();
 
-        if (x <= bounds.left || x >= bounds.right) {
+        if ((x - radius) <= bounds.left || (x + radius) >= bounds.right) {
             direcaoX *= -1;
             incrementX *= -1;
         }
-        if (y <= bounds.top || y >= bounds.bottom) {
+        if ((y - radius)<= bounds.top || (y + radius) >= bounds.bottom) {
             direcaoY *= -1;
             incrementY *= -1;
         }
@@ -65,4 +49,7 @@ public class Ball {
         return position.getY();
     }
 
+    public int getRadius() {
+        return radius;
+    }
 }

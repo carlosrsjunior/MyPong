@@ -41,7 +41,7 @@ public class GameActivity extends ActionBarActivity {
 
     public void onStart() {
         super.onStart();
-        gameView.updateBallPosition();
+        gameView.updateScreen();
     }
     @Override
     public void finish() {
