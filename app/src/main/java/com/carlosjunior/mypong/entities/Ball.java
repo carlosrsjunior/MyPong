@@ -8,37 +8,41 @@ import com.carlosjunior.mypong.constants.PongConstants;
 /**
  * Created by Carlos on 05/07/2015.
  */
-public class Ball {
+public class Ball extends Moveable{
 
     private int radius;
-    private Position position;
-    private int incrementX = -19;
-    private int incrementY = -15;
-    private int direcaoX = -1;  // positivo para direita, negativo para esquerda
-    private int direcaoY = -1;  // positivo para cima, negativo para baixo
+    private boolean ballRebated;
 
     public Ball() {
-        position = new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION);
+        super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), 15, 12);
         radius = PongConstants.BALL_RADIUS;
+        ballRebated = false;
     }
 
-    public void move(Rect bounds) {
+    protected void checkDirection(Rect bounds) {
 
-        int x = position.getX();
-        int y = position.getY();
-
-        if ((x - radius) <= bounds.left || (x + radius) >= bounds.right) {
-            direcaoX *= -1;
-            incrementX *= -1;
+        if (getLeft() <= bounds.left || getRight() >= bounds.right) {
+            changeDirectionX();
         }
-        if ((y - radius)<= bounds.top || (y + radius) >= bounds.bottom) {
-            direcaoY *= -1;
-            incrementY *= -1;
+        if (getTop() <= bounds.top || getBottom() >= bounds.bottom) {
+            changeDirectionY();
+        }
+        if (ballRebated) {
+            changeDirectionY();
+            ballRebated = false;
         }
 
-   //     Log.i("crsj", bounds.left + "," + bounds.right + "," + bounds.top + "," + bounds.bottom);
-        position.setX(x + incrementX);
-        position.setY(y + incrementY);
+    }
+
+    public boolean checkRebate(Racket racket) {
+
+        ballRebated = false;
+        if (getLeft() >= racket.getLeft() &&
+                getRight() <= racket.getRight() &&
+                getBottom() >= racket.getBottom()) {
+            ballRebated = true;
+        }
+        return ballRebated;
     }
 
     public int getXPosition() {
@@ -52,4 +56,21 @@ public class Ball {
     public int getRadius() {
         return radius;
     }
+
+    public int getLeft() {
+        return position.getX() - radius;
+    }
+
+    public int getTop() {
+        return position.getY() - radius;
+    }
+
+    public int getRight() {
+        return position.getX() + radius;
+    }
+
+    public int getBottom() {
+        return position.getY() + radius;
+    }
+
 }

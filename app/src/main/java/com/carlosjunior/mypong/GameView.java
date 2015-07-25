@@ -21,8 +21,6 @@ public class GameView extends View {
 
     private Racket racket;
     private Ball ball;
-    private BallPositionHandler ballPositionHandler;
-    private static final int BALL_POSITION_CODE = 1;
 
     private Paint paintBall;
     private Paint paintRacket;
@@ -31,7 +29,6 @@ public class GameView extends View {
         super(context, attrs);
         racket = new Racket();
         ball = new Ball();
-        ballPositionHandler = new BallPositionHandler();
 
         paintBall = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintBall.setColor(Color.GREEN);
@@ -39,12 +36,6 @@ public class GameView extends View {
         paintRacket.setColor(Color.RED);
 
     }
-
-//    public GameView(Context context, AttributeSet attrs, int defStyleAttr) {
-//        super(context, attrs, defStyleAttr);
-//        ballPosition = new Position(PongConstants.INITIAL_X_POSITION, PongConstants.INITIAL_Y_POSITION);
-//    }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -55,32 +46,20 @@ public class GameView extends View {
 
         ball.move(canvas.getClipBounds());
         racket.move(canvas.getClipBounds());
-
     }
 
-    public void updateScreen() {
-       // ball.move();
+    public boolean checkBallMovement() {
+        boolean rebated = false;
         invalidate();
-        Message msg = new Message();
-        msg.what = BALL_POSITION_CODE;
-        ballPositionHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
+        rebated = ball.checkRebate(racket);
+        return rebated;
     }
 
-    public void resetHandler() {
-        ballPositionHandler.removeCallbacksAndMessages(null);
+    public void moveRacketToLeft() {
+        racket.setDirectionXToLeft();
     }
 
-    class BallPositionHandler extends Handler {
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch(msg.what) {
-                case BALL_POSITION_CODE:
-                    updateScreen();
-                    break;
-            }
-        }
+    public void moveRacketToRight() {
+        racket.setDirectionXToRight();
     }
-
 }

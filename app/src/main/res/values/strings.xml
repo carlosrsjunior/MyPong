@@ -3,8 +3,8 @@
     <string name="hello_world">My Pong!</string>
     <string name="action_settings">Settings</string>
     <string name="start">Start Game</string>
-    <string name="lbl_pontos">Pontos</string>
-    <string name="vl_pontos">0</string>
+    <string name="lbl_score">Pontos</string>
+    <string name="vl_score">0</string>
     <string name="lbl_left">Para Esquerda</string>
     <string name="lbl_right">Para Direita</string>
 </resources>

@@ -1,20 +1,37 @@
 package com.carlosjunior.mypong;
 
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.carlosjunior.mypong.constants.PongConstants;
 
 
 public class GameActivity extends ActionBarActivity {
 
     private GameView gameView;
+    private TextView txtScore;
+    private int score;
+    private GameViewHandler gameViewHandler;
+    private static final int BALL_POSITION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        gameViewHandler = new GameViewHandler();
         gameView = (GameView) findViewById(R.id.gameview);
+
+        score = 0;
+        txtScore = (TextView) findViewById(R.id.txt_score);
+        txtScore.setText(score + "");
     }
 
     @Override
@@ -41,12 +58,48 @@ public class GameActivity extends ActionBarActivity {
 
     public void onStart() {
         super.onStart();
-        gameView.updateScreen();
+        updateScreen();
     }
+
     @Override
     public void finish() {
-        gameView.resetHandler();
+        gameViewHandler.removeCallbacksAndMessages(null);
         super.finish();
+    }
+
+    public void moveToLeft(View view) {
+        gameView.moveRacketToLeft();
+    }
+
+    public void moveToRight(View view) {
+        gameView.moveRacketToRight();
+    }
+
+    private void updateScreen() {
+        boolean rebated = gameView.checkBallMovement();
+        updateScore(rebated);
+        Message msg = new Message();
+        msg.what = BALL_POSITION_CODE;
+        gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
+    }
+
+    private void updateScore(boolean rebated) {
+        if (rebated) {
+            txtScore.setText((++score)+"");
+        }
+    }
+
+    class GameViewHandler extends Handler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what) {
+                case BALL_POSITION_CODE:
+                    updateScreen();
+                    break;
+            }
+        }
     }
 
 }

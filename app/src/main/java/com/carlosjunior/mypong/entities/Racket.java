@@ -7,22 +7,29 @@ import com.carlosjunior.mypong.constants.PongConstants;
 /**
  * Created by Carlos on 12/07/2015.
  */
-public class Racket {
+public class Racket extends Moveable {
 
-    private Position position;
     private int width;
     private int height;
 
-
     public Racket() {
-        position = new Position(PongConstants.RACKET_INITIAL_X_POSITION, PongConstants.RACKET_INITIAL_Y_POSITION);
+        super(new Position(PongConstants.RACKET_INITIAL_X_POSITION, PongConstants.RACKET_INITIAL_Y_POSITION), 10, 0);
         width = PongConstants.RACKET_WIDTH;
-        height= PongConstants.RACKET_HEIGHT;
+        height = PongConstants.RACKET_HEIGHT;
     }
 
-    public void move(Rect bounds) {
+    protected void checkDirection(Rect bounds) {
 
-        // TODO
+        if (getLeft() <= bounds.left) {
+            position.setX(bounds.left);
+            changeDirectionX();
+        }
+
+        if (getRight() >= bounds.right) {
+            position.setX(bounds.right - width);
+            // stopDirectionX();
+            changeDirectionX();
+        }
     }
 
     public int getLeft() {
@@ -40,6 +47,5 @@ public class Racket {
     public int getBottom() {
         return position.getY() + height;
     }
-
 
 }
