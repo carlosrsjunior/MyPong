@@ -21,14 +21,14 @@ public class Racket extends Moveable {
     protected void checkDirection(Rect bounds) {
 
         if (getLeft() <= bounds.left) {
-            position.setX(bounds.left);
-            changeDirectionX();
+            position.setX(bounds.left + 1);
+            stopDirectionX();
         }
 
         if (getRight() >= bounds.right) {
-            position.setX(bounds.right - width);
-            // stopDirectionX();
-            changeDirectionX();
+            position.setX(bounds.right - width - 1);
+            stopDirectionX();
+            //changeDirectionX();
         }
     }
 

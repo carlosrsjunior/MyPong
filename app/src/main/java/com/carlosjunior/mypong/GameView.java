@@ -49,9 +49,8 @@ public class GameView extends View {
     }
 
     public boolean checkBallMovement() {
-        boolean rebated = false;
         invalidate();
-        rebated = ball.checkRebate(racket);
+        boolean rebated = ball.checkRebate(racket);
         return rebated;
     }
 

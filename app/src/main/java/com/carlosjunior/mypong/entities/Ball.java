@@ -39,10 +39,15 @@ public class Ball extends Moveable{
         ballRebated = false;
         if (getLeft() >= racket.getLeft() &&
                 getRight() <= racket.getRight() &&
-                getBottom() >= racket.getBottom()) {
+                getBottom() >= racket.getTop()) {
             ballRebated = true;
+            correctPositionAfterRebate(racket);
         }
         return ballRebated;
+    }
+
+    private void correctPositionAfterRebate(Racket racket) {
+        position.setY(position.getY() - (2 * (getBottom() - racket.getTop())));
     }
 
     public int getXPosition() {

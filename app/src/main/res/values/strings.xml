@@ -5,6 +5,8 @@
     <string name="start">Start Game</string>
     <string name="lbl_score">Pontos</string>
     <string name="vl_score">0</string>
+    <string name="lbl_lifes">Vidas</string>
+    <string name="vl_lifes">0</string>
     <string name="lbl_left">Para Esquerda</string>
     <string name="lbl_right">Para Direita</string>
 </resources>

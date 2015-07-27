@@ -1,6 +1,5 @@
 package com.carlosjunior.mypong;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -16,7 +15,9 @@ import com.carlosjunior.mypong.constants.PongConstants;
 public class GameActivity extends ActionBarActivity {
 
     private GameView gameView;
-    private TextView txtScore;
+    private TextView txtVlLifes;
+    private int lifes;
+    private TextView txtVlScore;
     private int score;
     private GameViewHandler gameViewHandler;
     private static final int BALL_POSITION_CODE = 1;
@@ -29,9 +30,13 @@ public class GameActivity extends ActionBarActivity {
         gameViewHandler = new GameViewHandler();
         gameView = (GameView) findViewById(R.id.gameview);
 
+        lifes = 0;
+        txtVlLifes = (TextView) findViewById(R.id.txt_vl_lifes);
+        txtVlLifes.setText(lifes + "");
+
         score = 0;
-        txtScore = (TextView) findViewById(R.id.txt_score);
-        txtScore.setText(score + "");
+        txtVlScore = (TextView) findViewById(R.id.txt_vl_score);
+        txtVlScore.setText(score + "");
     }
 
     @Override
@@ -85,7 +90,7 @@ public class GameActivity extends ActionBarActivity {
 
     private void updateScore(boolean rebated) {
         if (rebated) {
-            txtScore.setText((++score)+"");
+            txtVlScore.setText((++score) + "");
         }
     }
 
