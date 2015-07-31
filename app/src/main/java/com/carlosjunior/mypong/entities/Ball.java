@@ -11,12 +11,14 @@ import com.carlosjunior.mypong.constants.PongConstants;
 public class Ball extends Moveable{
 
     private int radius;
-    private boolean ballRebated;
+    private BallStatus ballStatus;
+//    private boolean ballRebated;
 
     public Ball() {
         super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), 15, 12);
         radius = PongConstants.BALL_RADIUS;
-        ballRebated = false;
+        ballStatus = BallStatus.MOVING;
+//        ballRebated = false;
     }
 
     protected void checkDirection(Rect bounds) {
@@ -24,26 +26,34 @@ public class Ball extends Moveable{
         if (getLeft() <= bounds.left || getRight() >= bounds.right) {
             changeDirectionX();
         }
-        if (getTop() <= bounds.top || getBottom() >= bounds.bottom) {
+        if (getTop() <= bounds.top) {
             changeDirectionY();
         }
-        if (ballRebated) {
+        if (getBottom() >= bounds.bottom) {
+            ballStatus = BallStatus.STOPPED;
+        }
+
+        if (BallStatus.REBATED.equals(ballStatus)) {
             changeDirectionY();
-            ballRebated = false;
+            ballStatus = BallStatus.MOVING;
         }
 
     }
 
-    public boolean checkRebate(Racket racket) {
+    public BallStatus checkMovement(Racket racket) {
 
-        ballRebated = false;
-        if (getLeft() >= racket.getLeft() &&
-                getRight() <= racket.getRight() &&
-                getBottom() >= racket.getTop()) {
-            ballRebated = true;
-            correctPositionAfterRebate(racket);
+        if (!BallStatus.LOST.equals(ballStatus) && !BallStatus.STOPPED.equals(ballStatus)) {
+            ballStatus = BallStatus.MOVING;
+            if (getBottom() >= racket.getTop()) {
+                if (getRight() > racket.getLeft() && getLeft() < racket.getRight()) {
+                    ballStatus = BallStatus.REBATED;
+                    correctPositionAfterRebate(racket);
+                } else {
+                    ballStatus = BallStatus.LOST;
+                }
+            }
         }
-        return ballRebated;
+        return ballStatus;
     }
 
     private void correctPositionAfterRebate(Racket racket) {

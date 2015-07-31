@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.carlosjunior.mypong.constants.PongConstants;
 import com.carlosjunior.mypong.entities.Ball;
+import com.carlosjunior.mypong.entities.BallStatus;
 import com.carlosjunior.mypong.entities.Racket;
 
 /**
@@ -48,10 +49,9 @@ public class GameView extends View {
         racket.move(canvas.getClipBounds());
     }
 
-    public boolean checkBallMovement() {
+    public BallStatus checkBallMovement() {
         invalidate();
-        boolean rebated = ball.checkRebate(racket);
-        return rebated;
+        return ball.checkMovement(racket);
     }
 
     public void moveRacketToLeft() {

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.carlosjunior.mypong.constants.PongConstants;
+import com.carlosjunior.mypong.entities.BallStatus;
 
 
 public class GameActivity extends ActionBarActivity {
@@ -30,14 +31,16 @@ public class GameActivity extends ActionBarActivity {
         gameViewHandler = new GameViewHandler();
         gameView = (GameView) findViewById(R.id.gameview);
 
-        lifes = 0;
+        lifes = PongConstants.INITIAL_LIFES;
         txtVlLifes = (TextView) findViewById(R.id.txt_vl_lifes);
         txtVlLifes.setText(lifes + "");
 
-        score = 0;
+        score = PongConstants.INITIAL_SCORE;
         txtVlScore = (TextView) findViewById(R.id.txt_vl_score);
         txtVlScore.setText(score + "");
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,17 +84,27 @@ public class GameActivity extends ActionBarActivity {
     }
 
     private void updateScreen() {
-        boolean rebated = gameView.checkBallMovement();
-        updateScore(rebated);
-        Message msg = new Message();
-        msg.what = BALL_POSITION_CODE;
-        gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
+        BallStatus ballStatus = gameView.checkBallMovement();
+
+        if (ballStatus.equals(BallStatus.REBATED)) {
+            updateScore();
+        }
+
+        if (ballStatus.equals(BallStatus.STOPPED)) {
+            updateLifes();
+        } else {
+            Message msg = new Message();
+            msg.what = BALL_POSITION_CODE;
+            gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
+        }
     }
 
-    private void updateScore(boolean rebated) {
-        if (rebated) {
-            txtVlScore.setText((++score) + "");
-        }
+    private void updateLifes() {
+        txtVlLifes.setText((--lifes) + "");
+    }
+
+    private void updateScore() {
+        txtVlScore.setText((++score) + "");
     }
 
     class GameViewHandler extends Handler {

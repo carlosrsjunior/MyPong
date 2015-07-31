@@ -5,14 +5,17 @@ package com.carlosjunior.mypong.constants;
  */
 public class PongConstants {
 
-    public static int BALL_INITIAL_X_POSITION = 100;
-    public static int BALL_INITIAL_Y_POSITION = 100;
-    public static int BALL_MOV_DELAY = 5;
-    public static int BALL_RADIUS = 25;
+    public static final int INITIAL_SCORE = 0;
+    public static final int INITIAL_LIFES = 3;
 
-    public static int RACKET_INITIAL_X_POSITION = 200;
-    public static int RACKET_INITIAL_Y_POSITION = 1200;
-    public static int RACKET_WIDTH = 300;
-    public static int RACKET_HEIGHT = 30;
+    public static final int BALL_INITIAL_X_POSITION = 100;
+    public static final int BALL_INITIAL_Y_POSITION = 100;
+    public static final int BALL_MOV_DELAY = 5;
+    public static final int BALL_RADIUS = 25;
+
+    public static final int RACKET_INITIAL_X_POSITION = 200;
+    public static final int RACKET_INITIAL_Y_POSITION = 1200;
+    public static final int RACKET_WIDTH = 300;
+    public static final int RACKET_HEIGHT = 30;
 
 }
