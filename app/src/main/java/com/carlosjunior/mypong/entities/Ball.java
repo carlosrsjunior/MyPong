@@ -12,13 +12,16 @@ public class Ball extends Moveable{
 
     private int radius;
     private BallStatus ballStatus;
-//    private boolean ballRebated;
 
     public Ball() {
         super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), 15, 12);
         radius = PongConstants.BALL_RADIUS;
         ballStatus = BallStatus.MOVING;
-//        ballRebated = false;
+    }
+
+    public void reset() {
+        super.reset();
+        ballStatus = BallStatus.MOVING;
     }
 
     protected void checkDirection(Rect bounds) {

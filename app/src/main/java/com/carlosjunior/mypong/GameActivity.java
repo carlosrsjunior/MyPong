@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carlosjunior.mypong.constants.PongConstants;
 import com.carlosjunior.mypong.entities.BallStatus;
@@ -15,21 +17,26 @@ import com.carlosjunior.mypong.entities.BallStatus;
 
 public class GameActivity extends ActionBarActivity {
 
-    private GameView gameView;
+    private TextView txtPlayer;
+    private String player;
     private TextView txtVlLifes;
     private int lifes;
     private TextView txtVlScore;
     private int score;
+    private GameView gameView;
     private GameViewHandler gameViewHandler;
+
     private static final int BALL_POSITION_CODE = 1;
+    private static final int RESUME_GAME_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        gameViewHandler = new GameViewHandler();
-        gameView = (GameView) findViewById(R.id.gameview);
+        player = getIntent().getStringExtra("player");
+        txtPlayer = (TextView) findViewById(R.id.txt_player_name);
+        txtPlayer.setText(player);
 
         lifes = PongConstants.INITIAL_LIFES;
         txtVlLifes = (TextView) findViewById(R.id.txt_vl_lifes);
@@ -38,6 +45,9 @@ public class GameActivity extends ActionBarActivity {
         score = PongConstants.INITIAL_SCORE;
         txtVlScore = (TextView) findViewById(R.id.txt_vl_score);
         txtVlScore.setText(score + "");
+
+        gameViewHandler = new GameViewHandler();
+        gameView = (GameView) findViewById(R.id.gameview);
     }
 
 
@@ -86,17 +96,27 @@ public class GameActivity extends ActionBarActivity {
     private void updateScreen() {
         BallStatus ballStatus = gameView.checkBallMovement();
 
-        if (ballStatus.equals(BallStatus.REBATED)) {
-            updateScore();
-        }
-
         if (ballStatus.equals(BallStatus.STOPPED)) {
-            updateLifes();
+            if (lifes > 0) {
+                Toast.makeText(this, R.string.msg_tryagain, Toast.LENGTH_SHORT).show();
+                Message msg = new Message();
+                msg.what = RESUME_GAME_CODE;
+                gameViewHandler.sendMessageDelayed(msg, PongConstants.RESUME_GAME_DELAY);
+            } else {
+                Toast.makeText(this, R.string.msg_gameover, Toast.LENGTH_LONG).show();
+            }
         } else {
+            if (ballStatus.equals(BallStatus.REBATED)) {
+                updateScore();
+            }
             Message msg = new Message();
             msg.what = BALL_POSITION_CODE;
             gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
         }
+    }
+
+    private void resumeGame() {
+        gameView.resume();
     }
 
     private void updateLifes() {
@@ -114,6 +134,11 @@ public class GameActivity extends ActionBarActivity {
             super.handleMessage(msg);
             switch(msg.what) {
                 case BALL_POSITION_CODE:
+                    updateScreen();
+                    break;
+                case RESUME_GAME_CODE:
+                    resumeGame();
+                    updateLifes();
                     updateScreen();
                     break;
             }

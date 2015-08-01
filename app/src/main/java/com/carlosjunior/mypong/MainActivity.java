@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -39,7 +40,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void startGame(View view) {
+        String player = ((EditText) findViewById(R.id.edt_player)).getText().toString();
         Intent t = new Intent(this, GameActivity.class);
+        t.putExtra("player", player);
         startActivity(t);
     }
 }

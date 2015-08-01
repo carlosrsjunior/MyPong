@@ -18,6 +18,10 @@ public class Racket extends Moveable {
         height = PongConstants.RACKET_HEIGHT;
     }
 
+    public void reset() {
+        super.reset();
+    }
+
     protected void checkDirection(Rect bounds) {
 
         if (getLeft() <= bounds.left) {

@@ -61,4 +61,9 @@ public class GameView extends View {
     public void moveRacketToRight() {
         racket.setDirectionXToRight();
     }
+
+    public void resume() {
+        racket.reset();
+        ball.reset();
+    }
 }

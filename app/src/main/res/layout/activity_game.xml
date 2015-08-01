@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        <TextView android:text="" android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:textSize="35dp"
+            android:id="@+id/txt_player_name"
             />
 
         <LinearLayout
@@ -23,7 +24,7 @@
             android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
-            <TextView android:text="@string/lbl_lifes" android:layout_width="200px"
+            <TextView android:text="@string/lbl_lifes" android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:id="@+id/txt_lbl_lifes"
