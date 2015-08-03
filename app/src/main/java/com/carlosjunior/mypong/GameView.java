@@ -28,8 +28,9 @@ public class GameView extends View {
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        racket = new Racket();
-        ball = new Ball();
+//        racket = new Racket();
+//      ball = new Ball();
+        //initializeMoveables(getClipBounds());
 
         paintBall = new Paint(Paint.ANTI_ALIAS_FLAG);
         paintBall.setColor(Color.GREEN);
@@ -38,9 +39,13 @@ public class GameView extends View {
 
     }
 
-    @Override
+     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        if (racket == null || ball == null) {
+            initializeMoveables(canvas.getClipBounds());
+        }
 
         canvas.drawCircle(ball.getXPosition(), ball.getYPosition(), ball.getRadius(), paintBall);
         canvas.drawRect(new Rect(racket.getLeft(), racket.getTop(), racket.getRight(), racket.getBottom()), paintRacket);
@@ -49,9 +54,21 @@ public class GameView extends View {
         racket.move(canvas.getClipBounds());
     }
 
+    private void initializeMoveables(Rect bounds) {
+        int racketXPosition = (int) (bounds.right * (PongConstants.RACKET_INITIAL_X_POSITION_PERCENT / (double) 100));
+        int racketYPosition = (int) (bounds.bottom * (PongConstants.RACKET_INITIAL_Y_POSITION_PERCENT / (double) 100));
+        racket = new Racket(racketXPosition, racketYPosition);
+
+        ball = new Ball();
+    }
+
     public BallStatus checkBallMovement() {
         invalidate();
-        return ball.checkMovement(racket);
+        if (ball != null) {
+            return ball.checkMovement(racket);
+        } else {
+            return BallStatus.STARTING;
+        }
     }
 
     public void moveRacketToLeft() {

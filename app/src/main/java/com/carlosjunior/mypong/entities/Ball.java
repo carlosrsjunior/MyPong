@@ -14,7 +14,7 @@ public class Ball extends Moveable{
     private BallStatus ballStatus;
 
     public Ball() {
-        super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), 15, 12);
+        super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), PongConstants.BALL_MOV_X_INCREMENT, PongConstants.BALL_MOV_Y_INCREMENT);
         radius = PongConstants.BALL_RADIUS;
         ballStatus = BallStatus.MOVING;
     }

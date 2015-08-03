@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView android:text="" android:layout_width="280dp"
+        <TextView android:text="" android:layout_width="165dp"
             android:layout_height="wrap_content"
-            android:textSize="35dp"
+            android:textSize="17dp"
             android:id="@+id/txt_player_name"
             />
 
@@ -24,15 +24,15 @@
             android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
 
-            <TextView android:text="@string/lbl_lifes" android:layout_width="75dp"
+            <TextView android:text="@string/lbl_lifes" android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="12dp"
                 android:id="@+id/txt_lbl_lifes"
                 android:gravity="right" />
 
             <TextView android:text="@string/vl_lifes" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="12dp"
                 android:id="@+id/txt_vl_lifes"
                 android:gravity="right" />
 
@@ -45,13 +45,13 @@
 
             <TextView android:text="@string/lbl_score" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="12dp"
                 android:id="@+id/txt_lbl_score"
                 android:gravity="right" />
 
             <TextView android:text="@string/vl_score" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="12dp"
                 android:id="@+id/txt_vl_score"
                 android:gravity="right" />
 

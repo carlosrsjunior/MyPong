@@ -8,7 +8,7 @@
     android:id="@+id/layout_main"
     android:background="@android:color/darker_gray">
 
-    <TextView android:text="@string/hello_world" android:layout_width="match_parent"
+    <TextView android:text="@string/app_name" android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="50dp" />
 

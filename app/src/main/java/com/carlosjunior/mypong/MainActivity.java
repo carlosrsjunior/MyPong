@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -15,6 +18,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        // Initialize the SDK before executing any other operations,
+        // especially, if you're using Facebook UI elements.
     }
 
     @Override
@@ -44,5 +51,21 @@ public class MainActivity extends ActionBarActivity {
         Intent t = new Intent(this, GameActivity.class);
         t.putExtra("player", player);
         startActivity(t);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this, "com.carlosjunior.mypong");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this, "com.carlosjunior.mypong");
     }
 }

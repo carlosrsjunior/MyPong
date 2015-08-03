@@ -5,10 +5,11 @@ package com.carlosjunior.mypong.entities;
  */
 public enum BallStatus {
 
-    MOVING(0, "MOVING"),
-    REBATED(1, "REBATED"),
-    LOST(2, "LOST"),
-    STOPPED(3, "STOP");
+    STARTING(0, "STARTING"),
+    MOVING(1, "MOVING"),
+    REBATED(2, "REBATED"),
+    LOST(3, "LOST"),
+    STOPPED(4, "STOP");
 
     private int code;
     private String description;
