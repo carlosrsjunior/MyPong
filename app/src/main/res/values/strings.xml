@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Pong</string>
     <string name="facebook_app_id">860596430689150</string>
+    <string name="facebook_app_name">My Pong by Carlos Jr</string>
     <string name="action_settings">Settings</string>
     <string name="start">Começar o jogo!!!</string>
     <string name="lbl_score">Pontos</string>
@@ -12,4 +13,23 @@
     <string name="msg_tryagain">Tente novamente!</string>
     <string name="msg_gameover">Fim de Jogo!</string>
     <string name="lbl_player">Jogador:</string>
+    <string name="lbl_publish">Publicar no Facebook</string>
+    <string name="msg_final_score">Você fez %1$s pontos</string>
+    <string name="msg_facebook">Eu fiz %1$s ponto(s) jogando %2$s com o nome %3$s</string>
+
+    <string name="cancelled">Cancelled</string>
+    <string name="permission_not_granted">Unable to perform selected action because permissions were not granted.</string>
+    <string name="ok">OK</string>
+    <string name="hello_user">Ola %1$s!</string>
+    <string name="success">Sucesso</string>
+    <string name="successfully_posted_post">Post ID: %1$s</string>
+    <string name="error">Erro</string>
+    <string name="status_update">Atualizando status para %1$s em %2$s</string>
+    <string name="photo_post">Photo Post</string>
+    <string name="you_picked">You picked:</string>
+    <string name="no_friends_selected">&lt;Nenhum amigo selecionado&gt;</string>
+    <string name="no_place_selected">&lt;Nenhum lugar selecionado&gt;</string>
+    <string name="pick_seattle_place">Pick a Seattle Place</string>
+    <string name="exception">Exception: %1$s</string>
+
 </resources>

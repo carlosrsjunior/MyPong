@@ -1,5 +1,6 @@
 package com.carlosjunior.mypong;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -28,6 +29,7 @@ public class GameActivity extends ActionBarActivity {
 
     private static final int BALL_POSITION_CODE = 1;
     private static final int RESUME_GAME_CODE = 2;
+    private static final int FINISH_GAME_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +106,9 @@ public class GameActivity extends ActionBarActivity {
                 gameViewHandler.sendMessageDelayed(msg, PongConstants.RESUME_GAME_DELAY);
             } else {
                 Toast.makeText(this, R.string.msg_gameover, Toast.LENGTH_LONG).show();
+                Message msg = new Message();
+                msg.what = FINISH_GAME_CODE;
+                gameViewHandler.sendMessageDelayed(msg, PongConstants.RESUME_GAME_DELAY);
             }
         } else {
             if (ballStatus.equals(BallStatus.REBATED)) {
@@ -127,6 +132,12 @@ public class GameActivity extends ActionBarActivity {
         txtVlScore.setText((++score) + "");
     }
 
+    private void showGameResult() {
+        Intent t = new Intent(this, PublishResultActivity.class);
+        t.putExtra("player", player);
+        t.putExtra("score", score+"");
+        startActivity(t);
+    }
     class GameViewHandler extends Handler {
 
         @Override
@@ -140,6 +151,9 @@ public class GameActivity extends ActionBarActivity {
                     resumeGame();
                     updateLifes();
                     updateScreen();
+                    break;
+                case FINISH_GAME_CODE:
+                    showGameResult();
                     break;
             }
         }
