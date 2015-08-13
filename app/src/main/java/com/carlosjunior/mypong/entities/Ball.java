@@ -13,10 +13,18 @@ public class Ball extends Moveable{
     private int radius;
     private BallStatus ballStatus;
 
-    public Ball() {
-        super(new Position(PongConstants.BALL_INITIAL_X_POSITION, PongConstants.BALL_INITIAL_Y_POSITION), PongConstants.BALL_MOV_X_INCREMENT, PongConstants.BALL_MOV_Y_INCREMENT);
-        radius = PongConstants.BALL_RADIUS;
+    public Ball(int initialXPosition, int initialYPosition, int radius) {
+        super(new Position(initialXPosition, initialYPosition), defineIncrementX(radius), defineIncrementY(radius));
+        this.radius = radius;
         ballStatus = BallStatus.MOVING;
+    }
+
+    private static int defineIncrementX(int radius) {
+        return (int) (radius * 4.0 / 7);
+    }
+
+    private static int defineIncrementY(int radius) {
+        return (int) (radius * 3.0 / 7);
     }
 
     public void reset() {

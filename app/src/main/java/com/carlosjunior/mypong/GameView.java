@@ -57,9 +57,18 @@ public class GameView extends View {
     private void initializeMoveables(Rect bounds) {
         int racketXPosition = (int) (bounds.right * (PongConstants.RACKET_INITIAL_X_POSITION_PERCENT / (double) 100));
         int racketYPosition = (int) (bounds.bottom * (PongConstants.RACKET_INITIAL_Y_POSITION_PERCENT / (double) 100));
-        racket = new Racket(racketXPosition, racketYPosition);
 
-        ball = new Ball();
+        int width = (int) (bounds.right * (PongConstants.RACKET_WIDTH_PERCENT / (double) 100));
+        int height = (int) (bounds.bottom * (PongConstants.RACKET_HEIGHT_PERCENT / (double) 100));
+
+        racket = new Racket(racketXPosition, racketYPosition, width, height);
+
+        int ballXPosition = (int) (bounds.right * (PongConstants.BALL_INITIAL_X_POSITION_PERCENT / (double) 100));
+        int ballYPosition = (int) (bounds.bottom * (PongConstants.BALL_INITIAL_Y_POSITION_PERCENT / (double) 100));
+
+        int radius = (int) (bounds.bottom * (PongConstants.BALL_RADIUS_PERCENT / (double) 100));
+
+        ball = new Ball(ballXPosition, ballYPosition, radius);
     }
 
     public BallStatus checkBallMovement() {

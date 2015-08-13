@@ -12,11 +12,15 @@ public class Racket extends Moveable {
     private int width;
     private int height;
 
-    public Racket(int initialXPosition, int initialYPosition) {
-        super(new Position(initialXPosition, initialYPosition), PongConstants.RACKET_MOV_X_INCREMENT, PongConstants.RACKET_MOV_Y_INCREMENT);
-        width = PongConstants.RACKET_WIDTH;
-        height = PongConstants.RACKET_HEIGHT;
+    public Racket(int initialXPosition, int initialYPosition, int width, int height) {
+        super(new Position(initialXPosition, initialYPosition), defineIncrementX(height), PongConstants.RACKET_MOV_Y_INCREMENT);
+        this.width = width; //PongConstants.RACKET_WIDTH;
+        this.height = height; //PongConstants.RACKET_HEIGHT;
+        stopDirectionX();
+    }
 
+    private static int defineIncrementX(int radius) {
+        return (int) (radius * 2.5 / 7);
     }
 
     public void reset() {

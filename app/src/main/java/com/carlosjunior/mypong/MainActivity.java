@@ -47,6 +47,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void startGame(View view) {
+        int id = view.getId();
+     //   switch (id) {
+     //       case
+     //   }
         String player = ((EditText) findViewById(R.id.edt_player)).getText().toString();
         Intent t = new Intent(this, GameActivity.class);
         t.putExtra("player", player);
