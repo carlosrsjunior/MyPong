@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.carlosjunior.mypong.constants.PongConstants;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
@@ -18,6 +20,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String player = getIntent().getStringExtra("player");
+        if (player == null) {
+            player = "";
+        }
+
+        EditText txtPlayer = (EditText) findViewById(R.id.edt_player);
+        txtPlayer.setText(player);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         // Initialize the SDK before executing any other operations,
@@ -47,13 +57,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void startGame(View view) {
-        int id = view.getId();
-     //   switch (id) {
-     //       case
-     //   }
+        int level = 0;
+        switch (view.getId()) {
+            case R.id.btn_start_easy:
+                level = PongConstants.LEVEL_EASY;
+                break;
+            case R.id.btn_start_hard:
+                level = PongConstants.LEVEL_HARD;
+                break;
+        }
         String player = ((EditText) findViewById(R.id.edt_player)).getText().toString();
         Intent t = new Intent(this, GameActivity.class);
         t.putExtra("player", player);
+        t.putExtra("level", level+"");
         startActivity(t);
     }
 

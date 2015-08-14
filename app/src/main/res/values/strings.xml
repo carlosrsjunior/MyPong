@@ -33,5 +33,6 @@
     <string name="no_place_selected">&lt;Nenhum lugar selecionado&gt;</string>
     <string name="pick_seattle_place">Pick a Seattle Place</string>
     <string name="exception">Exception: %1$s</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 </resources>

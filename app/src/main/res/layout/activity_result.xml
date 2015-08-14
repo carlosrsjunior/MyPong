@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
@@ -7,64 +6,44 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.carlosjunior.mypong.PublishResultActivity"
+    tools:context="com.carlosjunior.mypong.ResultActivity"
     android:background="@android:color/darker_gray">
 
 
-        <TextView android:text="Carlos Roberto" android:layout_width="match_parent"
+            <TextView android:text="Carlos Roberto" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:id="@+id/txt_player_name"
-            android:gravity="center" />
+                android:gravity="center" />
 
-        <TextView android:text="Você fez 54 pontos" android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:id="@+id/txt_final_score"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center" />
-
-        <com.facebook.login.widget.LoginButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/greeting"
-                android:layout_width="wrap_content"
+            <TextView android:text="Você fez 54 pontos" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
-                android:textColor="#333"
-                android:textSize="18sp"/>
-            <com.facebook.login.widget.ProfilePictureView
-                android:id="@+id/profilePicture"
+                android:textSize="17dp"
+                android:id="@+id/txt_final_score"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/btnReplay"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginBottom="10dp"/>
-
-        </LinearLayout>
-
+                android:text="Jogar novamente"
+                android:layout_marginTop="40dp"
+                android:onClick="replayGame"/>
+                />
+            <Button
+                android:id="@+id/btnPostOnFacebook"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Publicar no Facebook"
+                android:onClick="postOnFacebook"/>
+                />
     <Button
-        android:id="@+id/postStatusUpdateButton"
+        android:id="@+id/btnFinish"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Publicar no Facebook"
-        />
-    <Button
-        android:id="@+id/postCommentStatusUpdateButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Publicar e comentar no Facebook"
-        />
+        android:text="Sair"
+        android:onClick="finish"/>
+    />
 
 </LinearLayout>

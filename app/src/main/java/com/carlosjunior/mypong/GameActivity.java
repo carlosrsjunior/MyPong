@@ -18,6 +18,7 @@ import com.carlosjunior.mypong.entities.BallStatus;
 
 public class GameActivity extends ActionBarActivity {
 
+    private int level;
     private TextView txtPlayer;
     private String player;
     private TextView txtVlLifes;
@@ -35,6 +36,9 @@ public class GameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        String levelTxt = getIntent().getStringExtra("level");
+        level = Integer.parseInt(levelTxt);
 
         player = getIntent().getStringExtra("player");
         txtPlayer = (TextView) findViewById(R.id.txt_player_name);
@@ -116,7 +120,7 @@ public class GameActivity extends ActionBarActivity {
             }
             Message msg = new Message();
             msg.what = BALL_POSITION_CODE;
-            gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
+            gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY * level);
         }
     }
 
@@ -133,7 +137,7 @@ public class GameActivity extends ActionBarActivity {
     }
 
     private void showGameResult() {
-        Intent t = new Intent(this, PublishResultActivity.class);
+        Intent t = new Intent(this, ResultActivity.class);
         t.putExtra("player", player);
         t.putExtra("score", score+"");
         startActivity(t);
