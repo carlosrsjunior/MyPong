@@ -16,10 +16,11 @@
     <string name="msg_gameover">Fim de Jogo!</string>
     <string name="lbl_player">Jogador:</string>
     <string name="lbl_publish">Publicar no Facebook</string>
+    <string name="lbl_commentpublish">Publicar e comentar no Facebook</string>
     <string name="msg_final_score">Você fez %1$s pontos</string>
     <string name="msg_facebook">Eu fiz %1$s ponto(s) jogando %2$s com o nome %3$s</string>
-
-    <string name="cancelled">Cancelled</string>
+    <string name="msg_replay">Jogar novamente</string>
+    <string name="cancelled">Cancelado</string>
     <string name="permission_not_granted">Unable to perform selected action because permissions were not granted.</string>
     <string name="ok">OK</string>
     <string name="hello_user">Ola %1$s!</string>
@@ -33,6 +34,5 @@
     <string name="no_place_selected">&lt;Nenhum lugar selecionado&gt;</string>
     <string name="pick_seattle_place">Pick a Seattle Place</string>
     <string name="exception">Exception: %1$s</string>
-    <string name="title_activity_result">ResultActivity</string>
 
 </resources>

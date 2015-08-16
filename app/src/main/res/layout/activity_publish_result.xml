@@ -20,13 +20,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView android:text="Carlos Roberto" android:layout_width="match_parent"
+            <TextView android:text="Jogador" android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
                         android:id="@+id/txt_player_name"
                     android:gravity="center" />
 
-            <TextView android:text="Você fez 54 pontos" android:layout_width="match_parent"
+            <TextView android:text="Você fez xx pontos" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
                 android:id="@+id/txt_final_score"
@@ -67,13 +67,13 @@
                 android:id="@+id/postStatusUpdateButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Publicar no Facebook"
+                android:text="@string/lbl_publish"
                 />
             <Button
                 android:id="@+id/postCommentStatusUpdateButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Publicar e comentar no Facebook"
+                android:text="@string/lbl_commentpublish"
                 />
 
         </LinearLayout>

@@ -1,6 +1,7 @@
 package com.carlosjunior.mypong;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -18,7 +19,7 @@ import com.carlosjunior.mypong.entities.BallStatus;
 
 public class GameActivity extends ActionBarActivity {
 
-    private int level;
+//    private int level;
     private TextView txtPlayer;
     private String player;
     private TextView txtVlLifes;
@@ -37,9 +38,6 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        String levelTxt = getIntent().getStringExtra("level");
-        level = Integer.parseInt(levelTxt);
-
         player = getIntent().getStringExtra("player");
         txtPlayer = (TextView) findViewById(R.id.txt_player_name);
         txtPlayer.setText(player);
@@ -53,7 +51,13 @@ public class GameActivity extends ActionBarActivity {
         txtVlScore.setText(score + "");
 
         gameViewHandler = new GameViewHandler();
+
+        String levelTxt = getIntent().getStringExtra("level");
+        int level = Integer.parseInt(levelTxt);
         gameView = (GameView) findViewById(R.id.gameview);
+        gameView.setLevel(level);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 
@@ -120,7 +124,7 @@ public class GameActivity extends ActionBarActivity {
             }
             Message msg = new Message();
             msg.what = BALL_POSITION_CODE;
-            gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY * level);
+            gameViewHandler.sendMessageDelayed(msg, PongConstants.BALL_MOV_DELAY);
         }
     }
 

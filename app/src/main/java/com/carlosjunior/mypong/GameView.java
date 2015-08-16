@@ -26,6 +26,8 @@ public class GameView extends View {
     private Paint paintBall;
     private Paint paintRacket;
 
+    private int level;
+
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
 //        racket = new Racket();
@@ -68,7 +70,7 @@ public class GameView extends View {
 
         int radius = (int) (bounds.bottom * (PongConstants.BALL_RADIUS_PERCENT / (double) 100));
 
-        ball = new Ball(ballXPosition, ballYPosition, radius);
+        ball = new Ball(ballXPosition, ballYPosition, radius, level);
     }
 
     public BallStatus checkBallMovement() {
@@ -91,5 +93,9 @@ public class GameView extends View {
     public void resume() {
         racket.reset();
         ball.reset();
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

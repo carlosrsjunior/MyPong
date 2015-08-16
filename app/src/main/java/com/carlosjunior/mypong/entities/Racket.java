@@ -19,8 +19,8 @@ public class Racket extends Moveable {
         stopDirectionX();
     }
 
-    private static int defineIncrementX(int radius) {
-        return (int) (radius * 2.5 / 7);
+    private static int defineIncrementX(int height) {
+        return (int) (height * PongConstants.RACKET_MOV_X_INCREMENT_PERCENT);
     }
 
     public void reset() {

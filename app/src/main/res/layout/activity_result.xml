@@ -10,13 +10,13 @@
     android:background="@android:color/darker_gray">
 
 
-            <TextView android:text="Carlos Roberto" android:layout_width="match_parent"
+            <TextView android:text="" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:id="@+id/txt_player_name"
                 android:gravity="center" />
 
-            <TextView android:text="Você fez 54 pontos" android:layout_width="match_parent"
+            <TextView android:text="" android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"
                 android:id="@+id/txt_final_score"
@@ -27,7 +27,7 @@
                 android:id="@+id/btnReplay"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Jogar novamente"
+                android:text="@string/msg_replay"
                 android:layout_marginTop="40dp"
                 android:onClick="replayGame"/>
                 />
@@ -35,15 +35,8 @@
                 android:id="@+id/btnPostOnFacebook"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Publicar no Facebook"
+                android:text="@string/lbl_publish"
                 android:onClick="postOnFacebook"/>
                 />
-    <Button
-        android:id="@+id/btnFinish"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:onClick="finish"/>
-    />
 
 </LinearLayout>

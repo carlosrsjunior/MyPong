@@ -63,8 +63,4 @@ public class ResultActivity extends ActionBarActivity {
         startActivity(t);
     }
 
-    public void finish(View view) {
-        this.finish();
-    }
-
 }

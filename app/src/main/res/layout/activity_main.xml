@@ -9,47 +9,59 @@
     android:id="@+id/layout_main"
     android:background="@android:color/darker_gray">
 
-    <TextView android:text="@string/msg_beggining" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="30dp">
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
 
-        <TextView android:text="@string/lbl_player" android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:id="@+id/txt_player"
-             />
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:textSize="20dp"
-            android:id="@+id/edt_player"
-            android:layout_weight="1" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView android:text="@string/msg_beggining" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start_easy"
-        android:id="@+id/btn_start_easy"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:onClick="startGame"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="30dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/start_hard"
-        android:id="@+id/btn_start_hard"
-        android:layout_gravity="center_horizontal"
-        android:onClick="startGame"/>
+                <TextView android:text="@string/lbl_player" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:id="@+id/txt_player"
+                     />
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:textSize="20dp"
+                    android:id="@+id/edt_player"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_easy"
+                android:id="@+id/btn_start_easy"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:onClick="startGame"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_hard"
+                android:id="@+id/btn_start_hard"
+                android:layout_gravity="center_horizontal"
+                android:onClick="startGame"/>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
