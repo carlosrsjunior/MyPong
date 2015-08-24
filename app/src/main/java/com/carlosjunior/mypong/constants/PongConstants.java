@@ -6,7 +6,7 @@ package com.carlosjunior.mypong.constants;
 public class PongConstants {
 
     public static final int INITIAL_SCORE = 0;
-    public static final int INITIAL_LIFES = 0;
+    public static final int INITIAL_LIFES = 3;
 
     public static final int LEVEL_EASY = 2;
     public static final int LEVEL_HARD = 1;
